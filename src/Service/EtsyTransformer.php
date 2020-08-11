@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Entity\Order;
 
-class EtsyImportService implements ImportInterface
+class EtsyTransformer implements TransformerInterface
 {
     public function fromArray(array $data) : Order
     {

@@ -3,7 +3,7 @@
 namespace App\Tests\Service;
 
 use App\Entity\Order;
-use App\Service\EtsyImportService;
+use App\Service\EtsyTransformer;
 use PHPUnit\Framework\TestCase;
 
 class EtsyImportServiceTest extends TestCase
@@ -12,7 +12,7 @@ class EtsyImportServiceTest extends TestCase
 
     protected function setUp()
     {
-        $this->service = new EtsyImportService();
+        $this->service = new EtsyTransformer();
     }
 
     public function testFromArrayEmptyData()

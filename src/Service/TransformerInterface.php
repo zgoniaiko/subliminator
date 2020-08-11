@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Entity\Order;
 
-interface ImportInterface
+interface TransformerInterface
 {
     public function fromArray(array $data) : Order;
 

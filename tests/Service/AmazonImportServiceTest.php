@@ -3,7 +3,7 @@
 namespace App\Tests\Service;
 
 use App\Entity\Order;
-use App\Service\AmazonImportService;
+use App\Service\AmazonTransformer;
 use PHPUnit\Framework\TestCase;
 
 class AmazonImportServiceTest extends TestCase
@@ -12,7 +12,7 @@ class AmazonImportServiceTest extends TestCase
 
     protected function setUp()
     {
-        $this->service = new AmazonImportService();
+        $this->service = new AmazonTransformer();
     }
 
     public function testFromArrayEmptyData()
