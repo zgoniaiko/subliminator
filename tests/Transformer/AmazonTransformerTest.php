@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Tests\Service;
+namespace App\Tests\Transformer;
 
 use App\Entity\Order;
-use App\Service\AmazonTransformer;
+use App\Transformer\AmazonTransformer;
 use PHPUnit\Framework\TestCase;
 
-class AmazonImportServiceTest extends TestCase
+class AmazonTransformerTest extends TestCase
 {
-    protected $service;
+    protected $transformer;
 
     protected function setUp()
     {
-        $this->service = new AmazonTransformer();
+        $this->transformer = new AmazonTransformer();
     }
 
     public function testFromArrayEmptyData()
     {
-        $order = $this->service->fromArray([]);
+        $order = $this->transformer->fromArray([]);
 
         $this->assertInstanceOf(Order::class, $order);
 
@@ -35,7 +35,7 @@ class AmazonImportServiceTest extends TestCase
         $data['shipping_address'] = 'Faroe Islands';
         $data['amount'] = 7846;
 
-        $order = $this->service->fromArray($data);
+        $order = $this->transformer->fromArray($data);
 
         $this->assertInstanceOf(Order::class, $order);
 

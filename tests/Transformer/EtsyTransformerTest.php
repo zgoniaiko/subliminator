@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Tests\Service;
+namespace App\Tests\Transformer;
 
 use App\Entity\Order;
-use App\Service\EtsyTransformer;
+use App\Transformer\EtsyTransformer;
 use PHPUnit\Framework\TestCase;
 
-class EtsyImportServiceTest extends TestCase
+class EtsyTransformerTest extends TestCase
 {
-    protected $service;
+    protected $transformer;
 
     protected function setUp()
     {
-        $this->service = new EtsyTransformer();
+        $this->transformer = new EtsyTransformer();
     }
 
     public function testFromArrayEmptyData()
     {
-        $order = $this->service->fromArray([]);
+        $order = $this->transformer->fromArray([]);
 
         $this->assertInstanceOf(Order::class, $order);
 
@@ -36,7 +36,7 @@ class EtsyImportServiceTest extends TestCase
         $data['address'] = 'French Southern Territories';
         $data['amount'] = 9;
 
-        $order = $this->service->fromArray($data);
+        $order = $this->transformer->fromArray($data);
 
         $this->assertInstanceOf(Order::class, $order);
 
