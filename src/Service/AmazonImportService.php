@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Entity\Order;
 
-class AmazonImportService
+class AmazonImportService implements ImportInterface
 {
     public function parse(array $data) : Order
     {
@@ -21,5 +21,10 @@ class AmazonImportService
         $order->setAmount($data['amount']);
 
         return $order;
+    }
+
+    public function supports($platform): bool
+    {
+        return 'amazon' === strtolower($platform);
     }
 }

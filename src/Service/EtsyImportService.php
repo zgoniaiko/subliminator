@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Entity\Order;
 
-class EtsyImportService
+class EtsyImportService implements ImportInterface
 {
     public function parse(array $data) : Order
     {
@@ -22,5 +22,10 @@ class EtsyImportService
         $order->setAmount($data['amount']);
 
         return $order;
+    }
+
+    public function supports($platform): bool
+    {
+        return 'etsy' === strtolower($platform);
     }
 }
