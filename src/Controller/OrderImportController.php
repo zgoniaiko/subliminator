@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\OrderImportType;
+use App\Transformer\TransformerCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +13,7 @@ class OrderImportController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(Request $request)
+    public function index(Request $request, TransformerCollection $transformers)
     {
         $form = $this->createForm(OrderImportType::class);
 
@@ -20,20 +21,20 @@ class OrderImportController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
+            $platform = null;
             if ($form->getClickedButton() === $form->get('amazon')){
-                echo 'Amazon <br />';
+                $platform = 'amazon';
             }
 
             if ($form->getClickedButton() === $form->get('etsy')){
-                echo 'Etsy <br />';
+                $platform = 'etsy';
             }
 
-            // use specific service for parse json to Order
-            // $order = $service->parse($data['json']);
+            $order = $transformers->fromArray($platform, json_decode($data['json'], true));
 
-            // $em = $this->getDoctrine()->getManager();
-            // $em->persist($order);
-            // $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($order);
+            $em->flush();
 
             return $this->redirectToRoute('homepage');
         }
