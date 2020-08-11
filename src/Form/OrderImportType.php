@@ -15,6 +15,7 @@ class OrderImportType extends AbstractType
             ->add('json', Type\TextareaType::class, [
                 'attr' => [
                     'rows' => 10,
+                    'cols' => 80,
                 ],
             ])
             ->add('amazon', Type\SubmitType::class,[
