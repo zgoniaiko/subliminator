@@ -6,7 +6,7 @@ use App\Entity\Order;
 
 class AmazonImportService implements ImportInterface
 {
-    public function parse(array $data) : Order
+    public function fromArray(array $data) : Order
     {
         $data['name'] = isset($data['name']) ? $data['name'] : '';
         $data['email'] = isset($data['email']) ? $data['email'] : '';

@@ -6,7 +6,7 @@ use App\Entity\Order;
 
 class EtsyImportService implements ImportInterface
 {
-    public function parse(array $data) : Order
+    public function fromArray(array $data) : Order
     {
         $data['first_name'] = isset($data['first_name']) ? $data['first_name'] : '';
         $data['last_name'] = isset($data['last_name']) ? $data['last_name'] : '';

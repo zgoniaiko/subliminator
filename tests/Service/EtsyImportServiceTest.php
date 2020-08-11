@@ -15,9 +15,9 @@ class EtsyImportServiceTest extends TestCase
         $this->service = new EtsyImportService();
     }
 
-    public function testParseEmptyData()
+    public function testFromArrayEmptyData()
     {
-        $order = $this->service->parse([]);
+        $order = $this->service->fromArray([]);
 
         $this->assertInstanceOf(Order::class, $order);
 
@@ -28,7 +28,7 @@ class EtsyImportServiceTest extends TestCase
         $this->assertEquals(0, $order->getAmount());
     }
 
-    public function testParse()
+    public function testFromArray()
     {
         $data['first_name'] = 'John';
         $data['last_name'] = 'Doe';
@@ -36,7 +36,7 @@ class EtsyImportServiceTest extends TestCase
         $data['address'] = 'French Southern Territories';
         $data['amount'] = 9;
 
-        $order = $this->service->parse($data);
+        $order = $this->service->fromArray($data);
 
         $this->assertInstanceOf(Order::class, $order);
 

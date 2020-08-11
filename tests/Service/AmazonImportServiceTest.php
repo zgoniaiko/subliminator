@@ -15,9 +15,9 @@ class AmazonImportServiceTest extends TestCase
         $this->service = new AmazonImportService();
     }
 
-    public function testParseEmptyData()
+    public function testFromArrayEmptyData()
     {
-        $order = $this->service->parse([]);
+        $order = $this->service->fromArray([]);
 
         $this->assertInstanceOf(Order::class, $order);
 
@@ -28,14 +28,14 @@ class AmazonImportServiceTest extends TestCase
         $this->assertEquals(0, $order->getAmount());
     }
 
-    public function testParse()
+    public function testFromArray()
     {
         $data['name'] = 'Boris';
         $data['email'] = 'boris@example.com';
         $data['shipping_address'] = 'Faroe Islands';
         $data['amount'] = 7846;
 
-        $order = $this->service->parse($data);
+        $order = $this->service->fromArray($data);
 
         $this->assertInstanceOf(Order::class, $order);
 
